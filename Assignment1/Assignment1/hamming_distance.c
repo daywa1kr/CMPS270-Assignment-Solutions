@@ -7,7 +7,7 @@ int get_hamming_distance(int a, int b) {
 	int count = 0;
 
 	while (n) {
-		if (n & 1 == 1)
+		if ((n & 1) == 1)
 			count++;
 		n >>= 1;
 	}
@@ -15,7 +15,7 @@ int get_hamming_distance(int a, int b) {
 	return count;
 }
 
-int _main() {
+int main_1() {
 
 	while (1) {	
 		int a, b;

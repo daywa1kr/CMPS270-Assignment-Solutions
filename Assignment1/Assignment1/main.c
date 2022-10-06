@@ -1,10 +1,8 @@
-#include <stdio.h>
-#include <stdbool.h>
 #include "hamming_distance.h"
+#include "msb_lsb.h"
 
 int main() {
 
-	_main();
+	main_2();
 
-	return 0;
 }

@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="hamming_distance.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="msb_lsb.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hamming_distance.h" />
+    <ClInclude Include="msb_lsb.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
