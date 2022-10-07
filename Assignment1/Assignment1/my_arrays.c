@@ -91,4 +91,6 @@ int main_3() {
 	printf("median: %d\n", median(a));
 	printf("mode: %d\n", mode(a));
 	printf("isSorted b: %d\n", isSorted(b));
+
+	return 0;
 }
