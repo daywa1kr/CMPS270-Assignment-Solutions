@@ -24,12 +24,18 @@
     <ClCompile Include="msb_lsb.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="my_arrays.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hamming_distance.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="msb_lsb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="my_arrays.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

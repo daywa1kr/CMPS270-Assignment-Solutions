@@ -130,10 +130,12 @@
     <ClCompile Include="hamming_distance.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="msb_lsb.c" />
+    <ClCompile Include="my_arrays.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hamming_distance.h" />
     <ClInclude Include="msb_lsb.h" />
+    <ClInclude Include="my_arrays.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
