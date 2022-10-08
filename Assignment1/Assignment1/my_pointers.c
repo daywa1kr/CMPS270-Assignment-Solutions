@@ -1,8 +1,7 @@
 #include "my_pointers.h"
 #define MAX_STRING 1024
 
-char** merge(char* a[], char* b[], int n1, int n2)
-{
+char** merge(char* a[], char* b[], int n1, int n2){
     int i = 0;
     char** array = malloc(sizeof(char*) * (n1 + n2));
     if (!array)
@@ -28,8 +27,7 @@ char** merge(char* a[], char* b[], int n1, int n2)
     return array;
 }
  
-int main_4()
-{
+int main_4(){
     char* a[2] = { "ab", "ac" };
     char* b[3] = { "za", "zb", "zzzzc" };
     char** res = merge(a, b, 2, 3);

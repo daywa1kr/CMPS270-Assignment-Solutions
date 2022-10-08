@@ -129,12 +129,14 @@
   <ItemGroup>
     <ClCompile Include="hamming_distance.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="more_arrays.c" />
     <ClCompile Include="msb_lsb.c" />
     <ClCompile Include="my_arrays.c" />
     <ClCompile Include="my_pointers.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="hamming_distance.h" />
+    <ClInclude Include="more_arrays.h" />
     <ClInclude Include="msb_lsb.h" />
     <ClInclude Include="my_arrays.h" />
     <ClInclude Include="my_pointers.h" />
