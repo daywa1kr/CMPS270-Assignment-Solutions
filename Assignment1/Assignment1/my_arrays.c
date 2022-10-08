@@ -1,5 +1,9 @@
 #include "my_arrays.h"
-
+/*
+	Requires: an integer array
+	Effects: prints the array out
+	Assumes: size of array is 10
+*/
 void printArray(int* array) {
 	printf("Index Value\n");
 	for (int i = 0; i < SIZE; i++) {
@@ -7,6 +11,11 @@ void printArray(int* array) {
 	}
 }
 
+/*
+	Requires: an integer array
+	Effects: prints a histogram representing the frequency of each element
+	Assumes: size of array is 10
+*/
 void arrayHistogram(int* array) {
 	printf("Value Frequency Histogram\n");
 	int count = 0;
@@ -28,12 +37,25 @@ void arrayHistogram(int* array) {
 	}
 }
 
+/*
+	Requires: an integer array, 2 integers between 0 and 9 representing 2 indeces
+	Effects: swaps values at i and j
+	Assumes: size of array is 10
+*/
 void swapValues(int* array, int i, int j) {
+	if (i > 9 || i < 0)
+		return;
+	
 	int temp = array[i];
 	array[i] = array[j];
 	array[j] = temp;
 }
 
+/*
+	Requires: an int array
+	Effects: sorts it with bubble sort
+	Assumes: size of array is 10
+*/
 void bubbleSort(int* array) {
 	for (int i = 0; i < SIZE - 1; i++) {
 		for (int j = 0; j < SIZE - i - 1; j++) {
@@ -44,11 +66,21 @@ void bubbleSort(int* array) {
 	}
 }
 
+/*
+	Requires: an int array
+	Effects: returns the median
+	Assumes: size of array is 10
+*/
 int median(int* array) {
 	bubbleSort(array);
 	return array[SIZE / 2];
 }
 
+/*
+	Requires: an int array
+	Effects: returns the mode
+	Assumes: size of array is 10
+*/
 int mode(int* array) {
 	int max = -1;
 	int count = 0;
@@ -69,6 +101,11 @@ int mode(int* array) {
 	return mode;
 }
 
+/*
+	Requires: an int array
+	Effects: if array is sorted retruns 1 else returns 0
+	Assumes: size of array is 10
+*/
 int isSorted(int* array) {
 	for (int i = 0; i < SIZE-1; i++) {
 		if (array[i] > array[i + 1])

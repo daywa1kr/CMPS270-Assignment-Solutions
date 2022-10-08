@@ -1,9 +1,14 @@
 #include "more_arrays.h"
 
-char* concatinate1D(char* a[], int n) {
+/*
+	Requires: a 1D array of char*, a positive int for the size of the array
+	Effects: concatinates the char*s in the array with ' ' inbetween and returns char* to the result or NULL if input is invalid
+	Assumes: a is not null and n is the correct size of the array		
+*/
+char* concatinate1D(char** a, int n) {
 	int total_size = n - 1;
 	size_t* lengths = malloc(n * sizeof(size_t));
-	char *result, *ptr;
+	char* result, * ptr;
 
 	for (int i = 0; i < n; i++) {
 		lengths[i] = strlen(a[i]);
@@ -16,13 +21,17 @@ char* concatinate1D(char* a[], int n) {
 		ptr += lengths[i];
 		if (i != n - 1) {
 			memcpy(ptr, " ", 1);
-			ptr ++;
+			ptr++;
 		}
 	}
 	*ptr = '\0';
 	return result;
 }
 
+/*
+	Requires: char***, a 2d array of char*s, positive ints for number of rows, number of cols
+	Effects: concatinates rows and returns a pointer to the new 1d array
+*/
 char** concat(char*** a, int rows, int cols) {
 	char** result = malloc(rows * sizeof(char*) + rows * (cols - 1) * sizeof(char));
 	for (int i = 0; i < rows; i++) {
@@ -49,10 +58,10 @@ int main_5() {
 		}
 	}
 
-	char** res=concat(a, h, w);
+	char** res = concat(a, h, w);
 
-    for (int i = 0; i < 2; i++)
-        printf("%s\n", res[i]);
+	for (int i = 0; i < 2; i++)
+		printf("%s\n", res[i]);
 
 	free(res);
 	free(a);

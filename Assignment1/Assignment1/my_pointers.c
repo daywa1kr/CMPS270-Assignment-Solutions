@@ -1,6 +1,9 @@
 #include "my_pointers.h"
 #define MAX_STRING 1024
-
+/*
+    Requires: two arrays of strings and their sizes
+    Effects: merges the two arrays into one and returns it
+*/
 char** merge(char* a[], char* b[], int n1, int n2){
     int i = 0;
     char** array = malloc(sizeof(char*) * (n1 + n2));
@@ -27,7 +30,7 @@ char** merge(char* a[], char* b[], int n1, int n2){
     return array;
 }
  
-int main_4(){
+int main_4() {
     char* a[2] = { "ab", "ac" };
     char* b[3] = { "za", "zb", "zzzzc" };
     char** res = merge(a, b, 2, 3);
@@ -39,5 +42,8 @@ int main_4(){
         for (int i = 0; i < 5; i++)
             printf("%s\n", res[i]);
     }
+
+    free(res);
+
     return 0;
 }
