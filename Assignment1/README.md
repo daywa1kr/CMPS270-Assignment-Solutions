@@ -6,7 +6,7 @@ CMPS 270 assignement 1 solution
 
 ## Use Instructions
 
-To test each exercise add the corresponding main function file in ``main.c`` :
+To test each exercise add the corresponding main function in ``main.c`` :
 
 - Exercise 1 : ``main_1()``
 - Exercise 2 : ``main_2()``
