@@ -1,4 +1,4 @@
-# CMPS270 Assignments
+# CMPS270 Assignments - lam36
 
 A repository containing CMPS270 Assignment submissions.
 
