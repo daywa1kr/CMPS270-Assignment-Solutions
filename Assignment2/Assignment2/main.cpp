@@ -7,12 +7,14 @@ int main() {
 	t1.addNode(5);
 	t1.addNode(1);
 	t1.addNode(0);
+	t1.addNode(2);
 	t1.addNode(-19);
-	t1.addNode(23);
-	
-	t1.postOrderPrint();
+	std::cout << "before adding 23 and removing -19 : ";
 	t1.inOrderPrint();
-	t1.preOrderPrint();
+	t1.addNode(23);
+	t1.deleteNode(-19);
+	std::cout << "after adding 23 and removing -19 : ";
+	t1.postOrderPrint();
 
 	std::cout << "size: " << t1.treeSize() << '\n';
 

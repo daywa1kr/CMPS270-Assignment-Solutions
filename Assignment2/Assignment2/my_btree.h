@@ -24,7 +24,11 @@ public:
     }
 
     void addNode(T val){
-        addNode(val, &root);
+        root = addNode(val, root);
+    }
+
+    void deleteNode(T val) {
+        root = deleteNode(val, root);
     }
 
     void inOrderPrint() {
@@ -47,25 +51,45 @@ public:
     }
 
 private:
-    void addNode(T val, struct treeNode** node) {
-        if (*node == NULL) {
+    struct treeNode* addNode(T val, struct treeNode* node) {
+        if (node == NULL) {
             struct treeNode* tmp = new struct treeNode;
             tmp->data = val;
             tmp->left = NULL;
             tmp->right = NULL;
-            *node = tmp;
+            node = tmp;
 
             size++;
         }
         else {
-            if (val > (*node)->data) {
-                addNode(val, &(*node)->right);
+            if (val > (node)->data) {
+                node->right=addNode(val, node->right);
             }
             else {
-                addNode(val, &(*node)->left);
+                node->left=addNode(val, node->left);
             }
         }
+        return node;
     }
+
+    struct treeNode* deleteNode(T val, struct treeNode* node) {
+        if (node == NULL) {
+            return NULL;
+        }
+        node->right = deleteNode(val, node->right);
+        node->left = deleteNode(val, node->left);
+
+        if (!node->left && !node->right && node->data==val) {
+            size--;
+            return NULL;
+        }
+        else if (node->data == val) {
+            std::cout << "CANNOT DELETE NODE\n";
+            return node;
+        }
+        return node;
+    }
+
     void inOrderPrint(struct treeNode* node) {
         if (node != NULL) {
             inOrderPrint(node->left);
