@@ -26,5 +26,8 @@
     <ClInclude Include="my_stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="my_graph.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
