@@ -23,6 +23,21 @@ public:
 		return stack[stack.size() - 1];
 	}
 
+	inline Stack operator +(const Stack s) {
+		Stack res;
+		std::vector<T> sum;
+		for (int i = 0; i < stack.size(); i++) {
+			sum.push_back(stack[i]);
+		}
+
+		for (int i = 0; i < s.stack.size(); i++) {
+			sum.push_back(s.stack[i]);
+		}
+		res.stack = sum;
+
+		return res;
+	}
+
 	void print() {
 		for (T t : stack) {
 			std::cout << t << " ";
@@ -42,9 +57,16 @@ public:
 
 		s.pop();
 
-		std::cout << s.top();
+		std::cout << s.top() << '\n';
 
+		Stack<int> a, b;
+		a.push(1);
+		a.push(2);
+		b.push(3);
+		b.push(4);
+		Stack<int> c = a + b;
 
+		c.print();
 	}
 };
 
