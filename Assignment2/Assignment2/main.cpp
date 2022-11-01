@@ -3,9 +3,9 @@
 #include "my_graph.h"
 
 int main() {
-	BT<int>::main();
-	std::cout << "\n---------------------------------------------\n";
-	Stack<int>::main();
-	std::cout << "\n----------------------------------------------\n";
+	//BT<int>::main();
+
+	//Stack<int>::main();
+
 	Graph::main();
 }
