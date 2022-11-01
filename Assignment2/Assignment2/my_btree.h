@@ -3,9 +3,15 @@
 #include <queue>
 #include <stack>
 
+/*
+    generic complete binary tree class
+*/
 template<typename T>
 class BT {
 private:
+    /*
+        struc for a tree node containing a value and pointers to its left and right children
+    */
     struct treeNode {
         T data;
         struct treeNode* left;
@@ -17,42 +23,63 @@ private:
     std::queue<struct treeNode*> q;
 
 public:
+    /*
+        effects: creates an instance of BT class with root set to null and size initialized to 0
+    */
     BT() {
        root = NULL;
        size = 0;
     }
-
+    /*
+        effects: destroys the BT instance
+    */
     ~BT() {
         deleteTree(root);
     }
-
+    /*
+        requires: a value T of the node to be added
+        effects: adds a new node with the given value val to the highest rightmost node
+    */
     void addNode(T val){
        root = addNode(val, root);
     }
-
+    /*
+        requires: a value T of the node to be deleted
+        effects: deletes the node with value val if it is a leaf else prints "CANNOT DELETE NODE"
+    */
     void deleteNode(T val) {
         root = deleteNode(val, root);
     }
-
+    /*
+        effects: performs inorder traversal on the tree and prints the values of nodes
+    */
     void inOrderPrint() {
         inOrderPrint(root);
         std::cout << '\n';
     }
-
+    /*
+        effects: performs preorder traversal on the tree and prints the values of nodes
+    */
     void preOrderPrint() {
         preOrderPrint(root);
         std::cout << '\n';
     }
-
+    /*
+        effects: performs postorder traversal on the tree and prints the values of nodes
+    */
     void postOrderPrint() {
         postOrderPrint(root);
         std::cout << '\n';
     }
-
+    /*
+        effects: returns the number of nodes in the tree
+    */
     int treeSize() const {
         return size;
     }
-
+    /*
+        main function for testing - called in main.cpp -
+    */
     static void main() {
         BT<int> t1;
 
@@ -67,7 +94,10 @@ public:
         t1.addNode(23);
         t1.deleteNode(-19);
         std::cout << "after adding 23 and removing -19 : ";
-        t1.postOrderPrint();
+        t1.inOrderPrint();
+        t1.deleteNode(24);
+        std::cout << "after deleting a val thats not in the tree: ";
+        t1.inOrderPrint();
 
         std::cout << "size: " << t1.treeSize() << '\n';
 
@@ -90,6 +120,14 @@ public:
     }
 
 private:
+    /*
+        helper function for addNode(T val)
+
+        requires: a T val for the data of the node to be added and a node that will be a pointer to the root
+        effects: creates a new node with the given val and if the node is null assigns it the new node.
+                 else checks for the last added node (stroed in the queue) with an empty child and adds the new node to it.
+                 after adding if both children are taken the node is popped. the function returns the node passed as an argument
+    */
     struct treeNode* addNode(T val, struct treeNode* node) {
         struct treeNode* tmp = new struct treeNode;
         tmp->data = val;
@@ -112,7 +150,14 @@ private:
         size++;
         return node;
     }
+    /*
+        helper function for deleteNode(T val)
 
+        requires: a T val for the data of the node to be deleted and a node that will be a pointer to the root
+        effects: the function recursively traverses the whole tree until it reaches the leaves. if any of the leaves is a node with 
+                 the specified val, it gets deleted, else if the node is found to be internal the function prints "CANNOT DELETE NODE"
+                 if the entered value is not in the tree no changes are made
+    */
     struct treeNode* deleteNode(T val, struct treeNode* node) {
         if (node == NULL) {
             return NULL;
@@ -130,7 +175,12 @@ private:
         }
         return node;
     }
+    /*
+        helper function for inOrderPrint()
 
+        requires: a pointer to the root 
+        effects: prints the in order traversal of the tree
+    */
     void inOrderPrint(struct treeNode* node) {
         if (node != NULL) {
             inOrderPrint(node->left);
@@ -138,6 +188,12 @@ private:
             inOrderPrint(node->right);
         }
     }
+    /*
+        helper function for postOrderPrint()
+
+        requires: a pointer to the root
+        effects: prints the post order traversal of the tree
+    */
     void postOrderPrint(struct treeNode* node) {
         if (node != NULL) {
             postOrderPrint(node->left);
@@ -145,6 +201,12 @@ private:
             std::cout << node->data << " ";
         }
     }
+    /*
+        helper function for preOrderPrint()
+
+        requires: a pointer to the root
+        effects: prints the pre order traversal of the tree
+    */
     void preOrderPrint(struct treeNode* node) {
         if (node != NULL) {
             std::cout << node->data << " ";
@@ -152,6 +214,12 @@ private:
             preOrderPrint(node->right);
         }
     }
+    /*
+        helper function for the destructor
+
+        requires: a pointer to the root
+        effects: deallocates the memory of all the nodes
+    */
     void deleteTree(struct treeNode* node) {
         if (node != NULL) {
             deleteTree(node->left);
