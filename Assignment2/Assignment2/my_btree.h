@@ -99,10 +99,10 @@ private:
         }
         else {
             if (val > (node)->data) {
-                node->right=addNode(val, node->right);
+                node->right = addNode(val, node->right);
             }
             else {
-                node->left=addNode(val, node->left);
+                node->left = addNode(val, node->left);
             }
         }
         return node;

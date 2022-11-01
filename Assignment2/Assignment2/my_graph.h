@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <stack>
+#include <set>
 #include <unordered_map>
 
 class Graph {
@@ -17,6 +19,10 @@ public:
 			}
 			else {
 				adjList[starts[i]].push_back(ends[i]);
+			}
+			if (adjList.find(ends[i]) == adjList.end()) {
+				std::vector<int> tmp;
+				adjList[ends[i]] = tmp;
 			}
 		}
 	}
@@ -44,11 +50,49 @@ public:
 		std::cout << '\n';
 	}
 
+	bool hasCycle() {
+		std::vector<int> visited(adjList.size(), 0);
+		std::vector<int> res;
+		for (int i = 0; i < adjList.size(); i++) {
+			if (visited[i] == 0) {
+				visited[i] = 1;
+				if (hasCycle(i, visited)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
 	static void main() {
 		std::vector<int> start = { 0, 0, 0, 4, 4, 3 };
 		std::vector<int> end = { 1, 2, 3, 3, 1, 1 };
 		Graph g(start, end);
 
 		g.print();
+
+		std::cout << "graph has cycle: " << g.hasCycle() << '\n';
+	}
+
+private:
+	bool hasCycle(int v, std::vector<int>& visited) {
+		for (int i = 0; i < visited.size(); i++) {
+			std::cout << visited[i] << " ";
+		}
+		std::cout << '\n';
+		for (int i = v; i < adjList[v].size(); i++) {
+			int j = adjList[v][i];
+			if (visited[j] == 1) {
+				return true;
+			}
+			else if (hasCycle(j, visited)) {
+				return true;
+			}
+			else {
+				visited[j] = 1;
+			}
+		}
+		return false;
 	}
 };
