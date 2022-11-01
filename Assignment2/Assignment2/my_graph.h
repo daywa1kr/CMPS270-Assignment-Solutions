@@ -73,6 +73,14 @@ public:
 		g.print();
 
 		std::cout << "graph has cycle: " << g.hasCycle() << '\n';
+
+		std::vector<int> start2 = { 0, 1, 2 };
+		std::vector<int> end2 = { 1, 2, 0 };
+		Graph g2(start2, end2);
+
+		g2.print();
+
+		std::cout << "graph 2 has cycle: " << g2.hasCycle() << '\n';
 	}
 
 private:
@@ -81,7 +89,7 @@ private:
 			std::cout << visited[i] << " ";
 		}
 		std::cout << '\n';
-		for (int i = v; i < adjList[v].size(); i++) {
+		for (int i = 0; i < adjList[v].size(); i++) {
 			int j = adjList[v][i];
 			if (visited[j] == 1) {
 				return true;

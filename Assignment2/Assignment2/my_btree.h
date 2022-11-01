@@ -1,8 +1,10 @@
 #pragma once
-#include<iostream>
+#include <iostream>
+#include <queue>
+#include <stack>
 
 template<typename T>
-class BST {
+class BT {
 private:
     struct treeNode {
         T data;
@@ -12,19 +14,20 @@ private:
 
     struct treeNode* root;
     int size;
+    std::queue<struct treeNode*> q;
 
 public:
-    BST() {
+    BT() {
        root = NULL;
        size = 0;
     }
 
-    ~BST() {
+    ~BT() {
         deleteTree(root);
     }
 
     void addNode(T val){
-        root = addNode(val, root);
+       root = addNode(val, root);
     }
 
     void deleteNode(T val) {
@@ -51,7 +54,7 @@ public:
     }
 
     static void main() {
-        BST<int> t1;
+        BT<int> t1;
 
         t1.addNode(3);
         t1.addNode(5);
@@ -68,7 +71,7 @@ public:
 
         std::cout << "size: " << t1.treeSize() << '\n';
 
-        BST<char> t2;
+        BT<char> t2;
 
         t2.addNode('p');
         t2.addNode('d');
@@ -88,23 +91,25 @@ public:
 
 private:
     struct treeNode* addNode(T val, struct treeNode* node) {
-        if (node == NULL) {
-            struct treeNode* tmp = new struct treeNode;
-            tmp->data = val;
-            tmp->left = NULL;
-            tmp->right = NULL;
-            node = tmp;
+        struct treeNode* tmp = new struct treeNode;
+        tmp->data = val;
+        tmp->left = NULL;
+        tmp->right = NULL;
 
-            size++;
+        if (node == NULL) {
+            node = tmp;
+        }
+        else if (!q.empty() && q.front()->left == NULL) {
+            q.front()->left = tmp;
         }
         else {
-            if (val > (node)->data) {
-                node->right = addNode(val, node->right);
-            }
-            else {
-                node->left = addNode(val, node->left);
+            if (!q.empty()) {
+                q.front()->right = tmp;
+                q.pop();
             }
         }
+        q.push(tmp);
+        size++;
         return node;
     }
 
@@ -129,7 +134,7 @@ private:
     void inOrderPrint(struct treeNode* node) {
         if (node != NULL) {
             inOrderPrint(node->left);
-            std::cout << node->data << ", ";
+            std::cout << node->data << " ";
             inOrderPrint(node->right);
         }
     }
@@ -137,12 +142,12 @@ private:
         if (node != NULL) {
             postOrderPrint(node->left);
             postOrderPrint(node->right);
-            std::cout << node->data << ", ";
+            std::cout << node->data << " ";
         }
     }
     void preOrderPrint(struct treeNode* node) {
         if (node != NULL) {
-            std::cout << node->data << ", ";
+            std::cout << node->data << " ";
             preOrderPrint(node->left);
             preOrderPrint(node->right);
         }

@@ -3,7 +3,7 @@
 #include "my_graph.h"
 
 int main() {
-	BST<int>::main();
+	BT<int>::main();
 	std::cout << "\n---------------------------------------------\n";
 	Stack<int>::main();
 	std::cout << "\n----------------------------------------------\n";
