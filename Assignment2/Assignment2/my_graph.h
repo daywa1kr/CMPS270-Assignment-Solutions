@@ -22,22 +22,31 @@ public:
 					   end:   1 2 3 3 1 1 
 
 		effects: creates an adjacency list using an unordered map that maps ints (each vertex) to it's outgoing neighbours in a vector
+		assumes: we're dealing with connected graphs, assumes the vertices are marked with non ngeative ints
+
+		tests:
+			tested with cyclic and acyclic graphs -> valid, graph created
+			start and end vectors with uneven and even sizes -> invalid, adjList is not filled and user is promped
 	*/
 	Graph(const std::vector<int>& starts, const std::vector<int>& ends) {
-		for (int i = 0; i < starts.size(); i++) {
-			if (adjList.find(starts[i]) == adjList.end()) {
-				std::vector<int> tmp;
-				tmp.push_back(ends[i]);
-				adjList[starts[i]] = tmp;
-			}
-			else {
-				adjList[starts[i]].push_back(ends[i]);
-			}
-			if (adjList.find(ends[i]) == adjList.end()) {
-				std::vector<int> tmp;
-				adjList[ends[i]] = tmp;
+		if (starts.size() == ends.size()) {
+			for (int i = 0; i < starts.size(); i++) {
+				if (adjList.find(starts[i]) == adjList.end()) {
+					std::vector<int> tmp;
+					tmp.push_back(ends[i]);
+					adjList[starts[i]] = tmp;
+				}
+				else {
+					adjList[starts[i]].push_back(ends[i]);
+				}
+				if (adjList.find(ends[i]) == adjList.end()) {
+					std::vector<int> tmp;
+					adjList[ends[i]] = tmp;
+				}
 			}
 		}
+		else
+			std::cout << "Please make sure all the vertices in the graph are connected\n";
 	}
 	/*
 		effects: clears the map and the vectors upon the destruction of the object
@@ -50,15 +59,33 @@ public:
 	}
 	/*
 		effects: returns number of adjacent nodes of the vertex with nodeID
+
+		tests:
+			valid numbers between 0 and adjList.size()
+			negative and out of bound numbers -> returns -1
 	*/
 	int numOutgoing(const int nodeID) {
-		return adjList[nodeID].size();
+		if (nodeID >= 0 && nodeID < adjList.size()) {
+			return adjList[nodeID].size();
+		}
+		std::cout << "invalid ID\n";
+		return -1;
 	}
 	/*
 		effects: returns all adjacent nodes of the vertex with nodeID in a vector
+		tests:
+			valid numbers between 0 and adjList.size()
+			negative and out of bound numbers -> propmts the user
 	*/
 	std::vector<int>& adjacent(const int nodeID) {
-		return adjList[nodeID];
+		std::vector<int> tmp;
+		if (nodeID >= 0 && nodeID < adjList.size()) {
+			tmp=adjList[nodeID];
+		}
+		else {
+			std::cout << "invalid ID\n";
+		}
+		return tmp;
 	}
 	/*
 		effects: prints the adjecancy list of the graph
@@ -75,6 +102,7 @@ public:
 	}
 	/*
 		effects: checks if the graph contains cycles. if so prints out the vertices that make up the cycle
+		tests: acyclic and cyclic graphs and gives the right output
 	*/
 	void hasCycle() {
 		visited.assign(adjList.size(), 0);
@@ -112,6 +140,14 @@ public:
 
 		g.print();
 
+		std::cout << "num of outgoing for 1: " << g.numOutgoing(1)<<'\n';
+
+		std::vector<int> adj = g.adjacent(-1);
+		for (int i = 0; i < adj.size(); i++) {
+			std::cout << adj[i] << ' ';
+		}
+		std::cout << '\n';
+
 		g.hasCycle();
 
 		std::vector<int> start2 = { 0, 1, 2 };
@@ -121,10 +157,18 @@ public:
 		g2.print();
 
 		g2.hasCycle();
+
+		std::cout << '\n';
+
+		std::vector<int> start3 = { 0, 1, 2, 3 };
+		std::vector<int> end3 = { 1, 2, 0 };
+		Graph g3(start3, end3);
 	}
 
 private:
 	/*
+		helper function for hasCycle()
+
 		requires: an int representing a vertex v contained in a graph
 		effects: performs dfs starting from the vertex v
 	*/

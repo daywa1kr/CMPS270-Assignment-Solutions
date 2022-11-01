@@ -10,7 +10,7 @@ template<typename T>
 class BT {
 private:
     /*
-        struc for a tree node containing a value and pointers to its left and right children
+        struct for a tree node containing a value and pointers to its left and right children
     */
     struct treeNode {
         T data;
@@ -39,6 +39,9 @@ public:
     /*
         requires: a value T of the node to be added
         effects: adds a new node with the given value val to the highest rightmost node
+
+        test:
+            adding negative, positive, zero values -> valid
     */
     void addNode(T val){
        root = addNode(val, root);
@@ -46,12 +49,19 @@ public:
     /*
         requires: a value T of the node to be deleted
         effects: deletes the node with value val if it is a leaf else prints "CANNOT DELETE NODE"
+
+        tests:
+            deleting leaves ->valid
+            deleting interior nodes ->invalid, prompts the user
+            deleting values not contained in the tree -> invalid, does nothing
     */
     void deleteNode(T val) {
         root = deleteNode(val, root);
     }
     /*
         effects: performs inorder traversal on the tree and prints the values of nodes
+        tests:
+            on char and int trees that conatin 1 node, many nodes and are balances, unbalanced
     */
     void inOrderPrint() {
         inOrderPrint(root);
@@ -59,6 +69,8 @@ public:
     }
     /*
         effects: performs preorder traversal on the tree and prints the values of nodes
+        tests:
+            on char and int trees that conatin 1 node, many nodes and are balances, unbalanced
     */
     void preOrderPrint() {
         preOrderPrint(root);
@@ -66,6 +78,8 @@ public:
     }
     /*
         effects: performs postorder traversal on the tree and prints the values of nodes
+        tests:
+            on char and int trees that conatin 1 node, many nodes and are balances, unbalanced
     */
     void postOrderPrint() {
         postOrderPrint(root);
