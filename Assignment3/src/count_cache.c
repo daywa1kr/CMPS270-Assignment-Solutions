@@ -3,8 +3,15 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define CACHE_SIZE 65536
+
+typedef struct count_element{
+    int count;
+    char dummy[CACHE_SIZE-4];
+}count_element;
+
 int *array;
-int *count_array;
+count_element *count_array;
 int length;
 int count;
 const int n_threads = 8;
@@ -20,7 +27,7 @@ void *count1s(void *id) {
       local_count++;
     }
   }
-  count_array[rank]=local_count;
+  count_array[rank].count=local_count;
   return NULL;
 }
 
@@ -30,7 +37,7 @@ int main() {
     count = 0;
     length = 1000000;
     array = calloc(length, sizeof(int));
-    count_array=calloc(n_threads, sizeof(int));
+    count_array=calloc(n_threads, sizeof(count_element));
 
     for (int i = 0; i < length; i++) {
       array[i] = rand() % 6;
@@ -45,7 +52,7 @@ int main() {
     }
 
     for(int i=0; i<n_threads; i++){
-        count+=count_array[i];
+        count+=count_array[i].count;
     }
 
     int real = 0;

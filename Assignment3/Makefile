@@ -6,3 +6,5 @@ mutex:
 	gcc -g -pthread -o a src/utils.c src/count_mutex.c
 priv:
 	gcc -g -pthread -o a src/utils.c src/count_private.c
+cache:
+	gcc -g -pthread -o a src/utils.c src/count_cache.c
