@@ -59,6 +59,7 @@ int main() {
     }
 
     free(array);
+    pthread_mutex_destroy(&mutex);
   }
   printf("correct: %d\n", correct);
   return 0;

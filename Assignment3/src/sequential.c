@@ -23,18 +23,16 @@ int main() {
   for (int i = 0; i < 100; i++) {
     printf("\n");
     srand(seed++);
-    length = 20;
+    length = 1000000;
     array = calloc(length, sizeof(int));
 
     for (int i = 0; i < length; i++) {
       array[i] = rand() % 6;
-      printf("%d ", array[i]);
     }
 
     double start = get_time();
     int c = count1s();
     double end = get_time();
-    printf("\ncount: %d\ntime: %f", c, end - start);
 
     free(array);
   }
