@@ -1,2 +1,4 @@
 seq:
-	gcc -o seq src/utils.c src/sequential.c
+	gcc -o a src/utils.c src/sequential.c
+race:
+	gcc -g -pthread -o a src/utils.c src/count_race.c
