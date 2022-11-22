@@ -14,13 +14,13 @@ Each experiment (`sequential.c`, `count_race.c`, `count_private.c`, `count_cache
 
 ### *<u>Data Collection</u>*
 
-<u>Table 1: Execution time for different number of threds on array of specified lengths </u>
+<u>Table 1: Execution time for different number of threads on arrays of specified lengths </u>
 
 <img src="./table1.png" alt="table 1"/>
 
 <br/>
 
-<u>Table 2: Number of correct results differnet number of threads </u>
+<u>Table 2: Number of correct results vs different number of threads </u>
 
 <img src="./table2.png" alt="table 2"/>
 
