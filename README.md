@@ -1,6 +1,8 @@
-# CMPS270 Assignments - lam36
+# Software Construction Assignments
 
-A repository containing CMPS270 Assignment submissions.
+A repository containing my solutions of the software construction assignments.
+
+The assignments include exercises about data structures, algorithms, and multithreading in C/C++.
 
 ---
 
